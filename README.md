@@ -1,6 +1,7 @@
 Multi is a simple utility higher order function for generating multi function/methods. Meaning it works in both a function and object method context retaining correct "this". 
 
 The accepted "types" you can declare in an "arity signature" are:
+
     func: function
     num: number
     str: string
