@@ -2,44 +2,44 @@ Multi is a simple utility higher order function for generating multi function/me
 
 Examples:
 
-test = multi
-    "func, obj": (a, b) ->
-        console.log "func and obj", a, b
+    test = multi
+        "func, obj": (a, b) ->
+            console.log "func and obj", a, b
 
-    "func": (f) ->
-        console.log "func", f
+        "func": (f) ->
+            console.log "func", f
 
-    "obj": (o) ->
-        console.log "Object", o
+        "obj": (o) ->
+            console.log "Object", o
 
-    "arr": (a) -> console.log "array ", a
+        "arr": (a) -> console.log "array ", a
 
-    "*": -> console.log "catch all", arguments
+        "*": -> console.log "catch all", arguments
 
-test (-> 'x'), {a: 'b', c: 'd'}
+    test (-> 'x'), {a: 'b', c: 'd'}
 
-test -> 'x'
+    test -> 'x'
 
-test {a: 'b'}
+    test {a: 'b'}
 
-test [1,2,3]
+    test [1,2,3]
 
-test "a", "b", "c", "d"
+    test "a", "b", "c", "d"
 
-class Person
-    constructor: (@name) ->
+    class Person
+        constructor: (@name) ->
 
-    multiTest: multi
-        "str": (s) ->
-            console.log @name, " string ", s
+        multiTest: multi
+            "str": (s) ->
+                console.log @name, " string ", s
 
-        "num": (n) ->
-            console.log @name, " num ", n
+            "num": (n) ->
+                console.log @name, " num ", n
 
-p = new Person 'peter'
+    p = new Person 'peter'
 
-console.log "\n\n"
-p.multiTest "cat"
-p.multiTest 34
+    console.log "\n\n"
+    p.multiTest "cat"
+    p.multiTest 34
 
 
