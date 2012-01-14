@@ -9,8 +9,8 @@ The accepted "types" you can declare in an "arity signature" are:
     bool: boolean
     obj: object
     *: catch-all (ignores arity)
- 
-An arity signature is constructed of one or more of the above (except for * which only makes sense alone) types seperated by comma with optional amounts of space e.g. "func, obj" and "  func  ,  obj " are the same. 
+    
+An arity signature is constructed of one or more of the above (except for * which only makes sense alone) types seperated by comma with optional amounts of space e.g. "func, obj" and "  func  ,  obj " are the same. Class names can also be used in place and with types.  
 
 Examples:
 
@@ -55,7 +55,33 @@ Examples:
     p.multiTest "cat"
     p.multiTest 34
 
-Todo: 
-support notion of "class instance" by using convention that class names should be uppercased (provide facility for otherwise e.g. class:person and Person)
+
+    class Dog
+
+    speak = multi
+        "Dog": (o) -> "bark"
+
+        "Person": (o) -> "Hey"
+
+        "Dog,Person": (d,p) -> "dog and a person"
+
+        "Person,Dog": (p,d) -> "person and a dog"
+
+        "obj": (o) -> "other obj"
+
+        "arr": (a) -> "array"
+
+        "num": (n) -> "just a num"
+
+    p = new Person
+    d = new Dog
+
+    speak p         #hey 
+    speak d         #bark
+    speak p,d       #person and dog
+    speak d,p       #dog and a person
+    speak {rand: 3} #other obj
+    speak [1,2]     #array
+    speak 3         #just a num
 
 Add check at decleration to make sure any types are with in limit of supported types 

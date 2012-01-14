@@ -16,12 +16,18 @@
     }
     return function() {
       sig = _.toArray(arguments).slice(0).map(function(v) {
+        var classname;
         if (_.isFunction(v)) return "func";
         if (_.isString(v)) return "str";
         if (_.isArray(v)) return "arr";
         if (_.isNumber(v)) return "num";
         if (_.isBoolean(v)) return "bool";
-        return "obj";
+        classname = v.__proto__.constructor.name;
+        if (classname === "Object") {
+          return "obj";
+        } else {
+          return classname;
+        }
       }).join(",");
       if (pats[sig]) return pats[sig].apply(this, arguments);
       if (pats['*']) return pats['*'].apply(this, arguments);

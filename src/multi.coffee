@@ -14,7 +14,9 @@ multi = (sigs) ->
             if _.isArray v then return "arr"
             if _.isNumber v then return "num"
             if _.isBoolean v then return "bool"
-            "obj").join(",")
+            
+            classname = v.__proto__.constructor.name
+            if classname is "Object" then "obj" else classname).join(",")
 
         if pats[sig] then return pats[sig].apply @, arguments
        
